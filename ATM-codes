@@ -1,18 +1,17 @@
 #include <stdio.h>
 #define PASSWORD 2138
 
-// Use pin as 2138
-
 int main() {
 
-/*
- * owner :shehankumara45@gmail.com
- * Language:  C
- * Currunt account balance = Cacc_bal
- * Saving account balance = Sacc_bal
- */
+    /*
+     * Currant Account balance = Cacc_bal
+     * Saving Account balance = Sacc_bal
+     * If you Entered Wrong PIN 3 times program will terminated
+     */
+
 
     int pin = 0;
+    int wrong_pin_counter=3;
     int type = 0;
     int option1 = 0;
     int option2 = 0;
@@ -21,90 +20,98 @@ int main() {
     int Sacc_bal = 0;
     int wtd_amount = 0;
 
-    do {
 
+    if (wrong_pin_counter >= 0) {
 
-        printf("Enter Your Pin:");
-        scanf("%d", &pin);
-        if (pin == PASSWORD) {
-            printf("Select Your Account Type\n [1] Current account\n [2] Savings account\n [3] Exit\n");
-            scanf("%d", &type);
-            switch (type) {
-                case 1:
-                    printf("Select One Option\n [1] Deposit money\n [2] Withdraw money\n [3] Exit\n");
-                    scanf("%d", &option1);
-                    if (option1 == 1) {
-                        printf("Enter Amount:");
-                        scanf("%d", &amount);
-                        Cacc_bal = Cacc_bal + amount;
-                        printf("New Account Balance %d\n", Cacc_bal);
-                        printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
-                        scanf("%d", &option2);
+        do {
+            if (wrong_pin_counter>=0) {
+                printf("Enter Your Pin:");
+                scanf("%d", &pin);
+                if (pin == PASSWORD) {
+                    printf("Select Your Account Type\n [1] Current account\n [2] Savings account\n [3] Exit\n");
+                    scanf("%d", &type);
+                    switch (type) {
+                        case 1:
+                            printf("Select One Option\n [1] Deposit money\n [2] Withdraw money\n [3] Exit\n");
+                            scanf("%d", &option1);
+                            if (option1 == 1) {
+                                printf("Enter Amount:");
+                                scanf("%d", &amount);
+                                Cacc_bal = Cacc_bal + amount;
+                                printf("New Account Balance %d\n", Cacc_bal);
+                                printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
+                                scanf("%d", &option2);
 
-                    } else if (option1 == 2) {
-                        printf("Enter an Amount:");
-                        scanf("%d", &wtd_amount);
-                        if (wtd_amount < Cacc_bal) {
-                            printf("New Account Balance: %d\n", Cacc_bal - wtd_amount);
-                            Cacc_bal=Cacc_bal-wtd_amount;
-                            printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
-                            scanf("%d", &option2);
-                        }else{
-                            printf("Your account balance is not sufficient\n");
-                            printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
-                            scanf("%d", &option2);
-                        }
-                    } else if (option1 == 3) {
-                        break;
-                    } else {
-                        printf("Entered Wrong Answer Try Again\n");
-                        break;
+                            } else if (option1 == 2) {
+                                printf("Enter an Amount:");
+                                scanf("%d", &wtd_amount);
+                                if (wtd_amount < Cacc_bal) {
+                                    printf("New Account Balance: %d\n", Cacc_bal - wtd_amount);
+                                    Cacc_bal = Cacc_bal - wtd_amount;
+                                    printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
+                                    scanf("%d", &option2);
+                                } else {
+                                    printf("Your account balance is not sufficient\n");
+                                    printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
+                                    scanf("%d", &option2);
+                                }
+                            } else if (option1 == 3) {
+                                break;
+                            } else {
+                                printf("Entered Wrong Answer Try Again\n");
+                                break;
+                            }
+                            break;
+
+                        case 2:
+                            printf("Select One Option\n [1] Deposit money\n [2] Withdraw money\n [3] Exit\n");
+                            scanf("%d", &option1);
+                            if (option1 == 1) {
+                                printf("Enter Amount:");
+                                scanf("%d", &amount);
+                                Sacc_bal = Sacc_bal + amount;
+                                printf("New Account Balance %d\n", Sacc_bal);
+                                printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
+                                scanf("%d", &option2);
+
+                            } else if (option1 == 2) {
+                                printf("Enter an Amount:");
+                                scanf("%d", &wtd_amount);
+                                if (wtd_amount < Sacc_bal) {
+                                    printf("New Account Balance: %d\n", Sacc_bal - wtd_amount);
+                                    Sacc_bal = Sacc_bal - wtd_amount;
+                                    printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
+                                    scanf("%d", &option2);
+                                } else {
+                                    printf("Your account balance is not sufficient\n");
+                                    printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
+                                    scanf("%d", &option2);
+                                }
+                            } else if (option1 == 3) {
+                                break;
+                            } else {
+                                printf("Entered Wrong Answer Try Again\n");
+                                break;
+                            }
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            printf("ERROR\n");
+                            type = 3;
+                            break;
+
                     }
-                    break;
+                } else {
+                    printf("Entered Wrong PIN, Try again\n------Time Remaining(%d)------\n", wrong_pin_counter);
+                    wrong_pin_counter--;
 
-                case 2:
-                    printf("Select One Option\n [1] Deposit money\n [2] Withdraw money\n [3] Exit\n");
-                    scanf("%d", &option1);
-                    if (option1 == 1) {
-                        printf("Enter Amount:");
-                        scanf("%d", &amount);
-                        Sacc_bal = Sacc_bal + amount;
-                        printf("New Account Balance %d\n", Sacc_bal);
-                        printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
-                        scanf("%d", &option2);
-
-                    } else if (option1 == 2) {
-                        printf("Enter an Amount:");
-                        scanf("%d", &wtd_amount);
-                        if (wtd_amount < Sacc_bal) {
-                            printf("New Account Balance: %d\n", Sacc_bal - wtd_amount);
-                            Sacc_bal=Sacc_bal-wtd_amount;
-                            printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
-                            scanf("%d", &option2);
-                        }else{
-                            printf("Your account balance is not sufficient\n");
-                            printf("Do you want perform another Transaction?\n [1] Yes\n [2] No\n ");
-                            scanf("%d", &option2);
-                        }
-                    } else if (option1 == 3) {
-                        break;
-                    } else {
-                        printf("Entered Wrong Answer Try Again\n");
-                        break;
-                    }
-                    break;
-                case 3:
-                    break;
-                default:
-                    printf("ERROR\n");
-                    type=3;
-                    break;
-
+                }
+            }else{
+                break;
             }
-        } else {
-            printf("Entered Wrong PIN, Try again\n");
-        }
-    }while (option2==1 && option1 <3 && type<3);
+        } while (option2 == 1 && option1 < 3 && type < 3 || wrong_pin_counter>=0);
+    }
 
     printf("Thank You");
 
